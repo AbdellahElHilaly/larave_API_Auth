@@ -14,6 +14,7 @@ use App\Http\Controllers\Controller;
 
 use App\Http\Controllers\Traits\ExceptionHandlerTrait;
 use App\Http\Controllers\Traits\ApiResponceTrait;
+use App\Http\Controllers\Traits\MailVerificationTrait;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
 use App\Http\Resources\UserResource;
@@ -22,6 +23,7 @@ class UserController extends Controller
 {
     use ExceptionHandlerTrait;
     use ApiResponceTrait;
+    use MailVerificationTrait;
 
     public function register(RegisterRequest $request)
     {
@@ -31,12 +33,16 @@ class UserController extends Controller
             $data['password'] = bcrypt($data['password']);
 
             $user = User::create($data);
+            
+            $this->sendMail();
 
             return $this->apiResponse(new UserResource($user), Response::HTTP_CREATED, "User created successfully");
         } catch (\Exception $e) {
             return $this->handleException($e);
         }
     }
+
+
 
 
     public function login(LoginRequest $request){
