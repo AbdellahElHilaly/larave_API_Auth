@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Traits;
+namespace App\Traits\Requests;
 trait BaseValidatorTrait
 {
     public function rules()

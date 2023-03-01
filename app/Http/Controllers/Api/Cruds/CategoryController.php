@@ -1,19 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\CRUDS;
 
 use App\Models\Category;
 
 use Illuminate\Http\Response;
 
-use App\Http\Requests\CategoryRequest;
-use App\Http\Resources\CategoryResource;
+use App\Http\Requests\Cruds\CategoryRequest;
+use App\Http\Resources\Cruds\CategoryResource;
 
 use App\Http\Controllers\Controller;
 
-use App\Http\Controllers\Traits\ExceptionHandlerTrait;
-use App\Http\Controllers\Traits\ApiResponceTrait;
+use App\Traits\ResponceHandling\ApiResponceTrait;
+use App\Traits\ExceptionHandling\ExceptionHandlerTrait;
 
+use App\Traits\Import\ImportTraite;
 
 class CategoryController extends Controller
 {

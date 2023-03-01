@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Traits;
+namespace App\Traits\Auth;
 use Illuminate\Support\Facades\Mail;
 
 Trait MailVerificationTrait
@@ -11,9 +11,9 @@ Trait MailVerificationTrait
 
     public function sendMail(){
         Mail::send('email',['msg'=>$this->msg], function ($message){
-            $message->from('abdellah.elhilaly.96@gmail.com', 'John Doe');
+            $message->from('abdellah.elhilaly.96@gmail.com', 'Stack Masters');
             $message->to($this->email , 'karmi hacking');
-            // $message->replyTo('elaoumarikarim@gmail.com', 'John Doe');
+            $message->replyTo('abdellah.elhilaly.96@gmail.com', 'Stack Masters');
             $message->subject('reset password');
         });
     }

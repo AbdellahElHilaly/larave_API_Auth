@@ -3,11 +3,11 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\CategoryController;
-use App\Http\Controllers\Api\CommentController;
-use App\Http\Controllers\Api\TagController;
-use App\Http\Controllers\Api\ArticleController;
-use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\CRUDS\CategoryController;
+use App\Http\Controllers\Api\CRUDS\CommentController;
+use App\Http\Controllers\Api\CRUDS\TagController;
+use App\Http\Controllers\Api\CRUDS\ArticleController;
+use App\Http\Controllers\Api\AUTH\UserController;
 
 
 

@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Controllers\Traits;
+namespace App\Traits\ResponceHandling;
 trait ApiResponceTrait
 {
     public function apiResponse($data = null, $status = 200, $message = "ok")

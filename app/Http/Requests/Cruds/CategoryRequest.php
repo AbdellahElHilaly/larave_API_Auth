@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Cruds;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Http\Requests\Traits\BaseValidatorTrait;
-class TagRequest extends FormRequest
+use App\Traits\Requests\BaseValidatorTrait;
+class CategoryRequest extends FormRequest
 {
     use BaseValidatorTrait;
     public function authorize()

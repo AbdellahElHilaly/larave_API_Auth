@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\CRUDS;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tag;
 use Illuminate\Http\Response;
 use App\Http\Requests\TagRequest;
-use App\Http\Resources\TagResource;
-use App\Http\Controllers\Traits\ExceptionHandlerTrait;
-use App\Http\Controllers\Traits\ApiResponceTrait;
+use App\Http\Resources\Cruds\TagResource;
+
+use App\Traits\ResponceHandling\ApiResponceTrait;
+use App\Traits\ExceptionHandling\ExceptionHandlerTrait;
+
 class TagController extends Controller
 {
     use ExceptionHandlerTrait;

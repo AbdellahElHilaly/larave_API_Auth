@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\CRUDS;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Comment;
-use App\Http\Resources\CommentResource;
+use App\Http\Resources\Cruds\CommentResource;
 use App\Http\Controllers\Controller;
 
 class CommentController extends Controller

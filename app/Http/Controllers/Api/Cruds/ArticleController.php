@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\CRUDS;
 
 use App\Models\Article;
 use App\Models\Tag;
@@ -8,13 +8,14 @@ use App\Models\Tag;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 
-use App\Http\Requests\ArticleRequest;
-use App\Http\Resources\ArticleResource;
+use App\Http\Requests\CRUDS\ArticleRequest;
+use App\Http\Resources\Cruds\ArticleResource;
 
 use App\Http\Controllers\Controller;
 
-use App\Http\Controllers\Traits\ExceptionHandlerTrait;
-use App\Http\Controllers\Traits\ApiResponceTrait;
+use App\Traits\ResponceHandling\ApiResponceTrait;
+use App\Traits\ExceptionHandling\ExceptionHandlerTrait;
+
 
 
 class ArticleController extends Controller
