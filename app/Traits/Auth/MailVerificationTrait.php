@@ -5,15 +5,12 @@ use Illuminate\Support\Facades\Mail;
 
 Trait MailVerificationTrait
 {
-    private $email = "lufy2024@gmail.com";
-    private $msg = "test";
 
-
-    public function sendMail(){
-        Mail::send('email',['msg'=>$this->msg], function ($message){
-            $message->from('abdellah.elhilaly.96@gmail.com', 'Stack Masters');
+    public function sendMail($email , $secret){
+        Mail::send('email',['activationCode'=>$this->secret], function ($message){
+            $message->from('abdellah.elhilaly.96@gmail.com', 'You Code');
             $message->to($this->email , 'karmi hacking');
-            $message->replyTo('abdellah.elhilaly.96@gmail.com', 'Stack Masters');
+            $message->replyTo('abdellah.elhilaly.96@gmail.com', 'You Code');
             $message->subject('reset password');
         });
     }

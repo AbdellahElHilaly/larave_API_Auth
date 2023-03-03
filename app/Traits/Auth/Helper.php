@@ -10,9 +10,11 @@ use DeviceDetector\Parser\Device\DeviceParserAbstract;
 use DeviceDetector\Parser\Browser\BrowserParserAbstract;
 use DeviceDetector\Parser\OperatingSystem\OperatingSystemParserAbstract;
 use Illuminate\Support\Str;
+// use GuzzleHttp\Client;
 
 trait Helper
 {
+
     public function generateToken()
     {
         $dd = new DeviceDetector($_SERVER['HTTP_USER_AGENT']);
@@ -21,36 +23,46 @@ trait Helper
         $platform = $dd->getOs('name');
         $browser = $dd->getClient('name');
         $ip = request()->ip();
+        $key = 'at_ssHlScfmx4QhQEJZVnVwIrLqwgivl';
         $time = time();
         $expiresAt = strtotime('+1 day', $time); // Token will expire in 1 day
-        $isWifi = false;
-
-        // Check if connection is WiFi
-        if (isset($_SERVER['HTTP_USER_AGENT']) && isset($_SERVER['HTTP_CONNECTION'])) {
-            if (stripos($_SERVER['HTTP_USER_AGENT'], 'android') !== false && stripos($_SERVER['HTTP_USER_AGENT'], 'mobile') !== false) {
-                if (stripos($_SERVER['HTTP_CONNECTION'], 'wifi') !== false) {
-                    $isWifi = true;
-                }
-            }
-        }
 
         $client = new Client();
-        $response = $client->get("https://ipapi.co/$ip/json/");
-        $location = json_decode($response->getBody(), true);
+        $url = 'https://geo.ipify.org/api/v2/country,city,vpn?apiKey='.$key.'&ipAddress='.$ip;
+        $response = $client->get($url);
+        $ipInformations = json_decode($response->getBody(), true);
+
+
+        if(isset($ipInformations['location'])){
+            $location = [
+                "country" => $ipInformations['location']['country'],
+                "region" => $ipInformations['location']['region'],
+                "city" => $ipInformations['location']['city'],
+            ];
+        }else $location = "no data";
+
+        if(isset($ipInformations['as']))
+            $network = [
+                "name" => $ipInformations['as']['name'],
+                "route" => $ipInformations['as']['route'],
+                "domain" => $ipInformations['as']['domain'],
+            ];
+            else $network = "no data";
+
 
         $token = [
+            'ip' => $ip,
             'device' => $device,
             'platform' => $platform,
             'browser' => $browser,
-            'ip' => $ip,
-            'time' => $time,
             'expires_at' => $expiresAt,
-            'is_wifi' => $isWifi,
-            'secret' => Str::random(60),
+            'secret' => rand(100000000, 999999999),
             'location' => $location,
+            'network' => $network,
         ];
 
         return $token;
     }
+
 
 }
